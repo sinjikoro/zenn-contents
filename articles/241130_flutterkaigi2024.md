@@ -13,9 +13,34 @@ https://www.youtube.com/watch?v=gIHP4aU9aEM&t=4246s
 
 #### [LT] Flutterを言い訳にしない！〜アプリの使い心地改善テクニック5選〜
 
+- リストに動画を表示する際、動作がカクつく＆端末が熱くなる
+    - TextureWidget(video_player)→PlatformView(native_video_player)を利用する
+- 画像をクロップする処理が重い
+    - dartでクロップ処理を行っている為、ライブラリでは画像にせずにRGBAバイトをそのまま返すようにライブラリを改造
+- iPhoneの時計のところをタップしてもリストが一番上に戻らない
+    - 時計タップイベントがScaffoldのPrimaryScrollControllerへ通知されるので、ListView独自で持っているScrollControllerへは通知されない
+
+
 #### [LT] より良いLint設定を追い求めて
 
+- linterルールの最新は https://github.com/dart-lang/site-www/blob/main/src/_data/linter_rules.json に格納されている。
+- 通常の開発では有名なLintPackageを利用するのが手っ取り早い、lintルールをより正確に最新化させたい場合は独自にてlintルールをカスタマイズさせる必要がある。
+
+
 #### [LT] CustomMultiChildLayoutを使って、あなたの思い描く自由なレイアウトを作ろう！
+
+- CustomMultiChildLayoutとは
+    - 複数のWidgetのレイアウトを制御し、任意の位置に配置する
+    - ColumnやRow、Stackのようなものを自作可能
+    - Widget毎にIDを割り振るので、ID毎に条件指定も可能
+    - 親のWidgetサイズを考慮して、子どものWidgetサイズや位置を指定できる
+- MultiCustomLayoutDelegate
+    - childrenの制御条件を指定
+- performLayout
+    - MultiCustomLayoutDelegateのメソッドで具体的な条件を指定
+    - サイズや位置も指定
+- shouldReLayout
+    - レイアウトの再計算を行うか指定
 
 
 ## Day 1
